@@ -1,0 +1,97 @@
+<div class="bootstrap-wrapper register-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title class="mat-h1">Register Form</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Fullname</mat-label>
+                                <input matInput type="text" formControlName="fullname">
+                                <mat-error
+                                    *ngIf="registerForm.controls['fullname'].invalid && registerForm.controls['fullname'].touched">
+                                    <span *ngIf="registerForm.controls['fullname'].hasError('required')">
+                                        Fullname is required
+                                    </span>
+                                    <span *ngIf="registerForm.controls['fullname'].hasError('minlength')">
+                                        Full Name must be at least 3 characters
+                                    </span>
+                                    <span *ngIf="registerForm.controls['fullname'].hasError('maxlength')">
+                                        Full Name must not exceed 50 characters
+                                    </span>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Username</mat-label>
+                                <input matInput type="email" formControlName="username">
+                                <mat-error
+                                    *ngIf="registerForm.controls['username'].invalid && registerForm.controls['username'].touched">
+                                    <span *ngIf="registerForm.controls['username'].hasError('required')">
+                                        Username is required
+                                    </span>
+                                    <span *ngIf="registerForm.controls['username'].hasError('email')">
+                                        Invalid email format
+                                    </span>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input matInput [type]="!showPassword ? 'password' : 'text'" formControlName="password">
+                                <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword">
+                                    <mat-icon>{{!showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error
+                                    *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
+                                    <span *ngIf="registerForm.controls['password'].hasError('required')">
+                                        Password is required
+                                    </span>
+                                    <span *ngIf="registerForm.controls['password'].hasError('minlength')">
+                                        Password must be at least 3 characters
+                                    </span>
+                                    <span *ngIf="registerForm.controls['password'].hasError('maxlength')">
+                                        Password must not exceed 50 characters
+                                    </span>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Confirm Password</mat-label>
+                                <input matInput [type]="!showConfirmPassword ? 'password' : 'text'"
+                                    formControlName="confirmPassword">
+                                <button type="button" mat-icon-button matSuffix
+                                    (click)="showConfirmPassword = !showConfirmPassword">
+                                    <mat-icon>{{!showConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error
+                                    *ngIf="registerForm.controls['confirmPassword'].invalid && registerForm.controls['confirmPassword'].touched">
+                                    <span *ngIf="registerForm.controls['confirmPassword'].hasError('required')">
+                                        Confirm Password is required
+                                    </span>
+                                    <span *ngIf="registerForm.controls['confirmPassword'].hasError('minlength')">
+                                        Confirm Password must be at least 3 characters
+                                    </span>
+                                    <span *ngIf="registerForm.controls['confirmPassword'].hasError('maxlength')">
+                                        Confirm Password must not exceed 50 characters
+                                    </span>
+                                    <span *ngIf="registerForm.controls['confirmPassword'].hasError('confirmed')">
+                                        Passwords did not match
+                                    </span>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <div class="d-flex justify-content-end">
+                                <button mat-raised-button color="primary"
+                                    [disabled]="registerForm.invalid">Submit</button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    background-color: #fafafa;
+}
+
+.background-color-red {
+    background-color: red;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
