@@ -4,13 +4,13 @@
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-between">
                     <a mat-button routerLink="/home" class="text-uppercase">Examination</a>
-                    <div class="navbar-buttons" *ngIf="!storageService.isLoggedIn()">
+                    <div class="navbar-buttons" *ngIf="!isLoggedIn()">
                         <a mat-raised-button routerLink="/login">Login</a>
                         <a mat-raised-button routerLink="/register">Register</a>
                     </div>
 
-                    <div class="navbar-buttons" *ngIf="storageService.isLoggedIn()">
-                        <button mat-raised-button (click)="storageService.logout()">Logout</button>
+                    <div class="navbar-buttons" *ngIf="isLoggedIn()">
+                        <button mat-raised-button (click)="logout()">Logout</button>
                     </div>
                 </div>
             </div>

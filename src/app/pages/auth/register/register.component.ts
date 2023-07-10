@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly authService: AuthService,
-        private readonly storageService: StorageService,
         private readonly toastify: MatSnackBar,
         private readonly router: Router,
     ) {}
@@ -39,6 +38,7 @@ export class RegisterComponent implements OnInit {
             this.authService.register({ fullname, username, password, roles: ['USER'] }).subscribe({
                 next: (response) => {
                     this.toastify.open('Register user successfully!', 'CANCEL');
+                    this.router.navigate(['/login']);
                 },
                 error: (error: HttpErrorResponse) => {
                     this.toastify.open(error.error.message, 'CANCEL');

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -7,5 +8,14 @@ import { StorageService } from 'src/app/services/storage.service';
     styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-    constructor(public readonly storageService: StorageService) {}
+    constructor(private readonly storageService: StorageService, private readonly router: Router) {}
+
+    isLoggedIn(): boolean {
+        return this.storageService.isLoggedIn();
+    }
+
+    logout(): void {
+        this.storageService.logout();
+        this.router.navigate(['/login']);
+    }
 }

@@ -1,0 +1,21 @@
+mat-card {
+    .example-header-image {
+        background-image: url('./../../../../../assets/quiz.png');
+        background-size: cover;
+    }
+
+    mat-card-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    mat-card-actions {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+.quiz-item {
+    margin-top: 20px;
+}

@@ -1,0 +1,36 @@
+<mat-card>
+    <div class="bootstrap-wrapper mt-10">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title mat-h2">Create category</h2>
+                </div>
+            </div>
+            <div class="row">
+                <form class="w-full" [formGroup]="formValidation" (ngSubmit)="onSubmit()">
+                    <mat-form-field class="col-md-12" appearance="outline">
+                        <mat-label>Title</mat-label>
+                        <input matInput type="text" formControlName="title">
+                        <mat-error
+                            *ngIf="formValidation.controls['title'].invalid && formValidation.controls['title'].touched">
+                            <span *ngIf="formValidation.controls['title'].hasError('required')">
+                                Title is required
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-12" appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput placeholder="Ex. It makes me feel..." rows="10"
+                            formControlName="description"></textarea>
+                    </mat-form-field>
+
+                    <div class="form-actions">
+                        <a mat-raised-button routerLink="/admin/categories" color="accent">Back</a>
+                        <button mat-raised-button color="primary">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-card>
