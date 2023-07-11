@@ -1,0 +1,98 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="mat-headline-6 pl-2">
+            <h2>Adding question to: <b>{{ quizToUpdate && quizToUpdate.title }}</b></h2>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="container-fluid">
+            <div class="row">
+                <form class="w-full" [formGroup]="formValidation" (ngSubmit)="onSubmit()">
+                    <div class="col-md-12 mb-3">
+                        <ckeditor [editor]="ContentEditor" data=""></ckeditor>
+                    </div>
+
+                    <mat-form-field class="col-md-6" appearance="outline">
+                        <mat-label>Option A</mat-label>
+                        <input matInput type="text" formControlName="optionA">
+                        <mat-error
+                            *ngIf="formValidation.controls['optionA'].invalid && formValidation.controls['optionA'].touched">
+                            <span *ngIf="formValidation.controls['optionA'].hasError('required')">
+                                Option A is required
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-6" appearance="outline">
+                        <mat-label>Option B</mat-label>
+                        <input matInput type="text" formControlName="optionB">
+                        <mat-error
+                            *ngIf="formValidation.controls['optionB'].invalid && formValidation.controls['optionB'].touched">
+                            <span *ngIf="formValidation.controls['optionB'].hasError('required')">
+                                Option B is required
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-6" appearance="outline">
+                        <mat-label>Option C</mat-label>
+                        <input matInput type="text" formControlName="optionC">
+                        <mat-error
+                            *ngIf="formValidation.controls['optionC'].invalid && formValidation.controls['optionC'].touched">
+                            <span *ngIf="formValidation.controls['optionC'].hasError('required')">
+                                Option C is required
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-6" appearance="outline">
+                        <mat-label>Option D</mat-label>
+                        <input matInput type="text" formControlName="optionD">
+                        <mat-error
+                            *ngIf="formValidation.controls['optionD'].invalid && formValidation.controls['optionD'].touched">
+                            <span *ngIf="formValidation.controls['optionD'].hasError('required')">
+                                Option D is required
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-12" appearance="outline">
+                        <mat-label>Answer</mat-label>
+                        <mat-select formControlName="answer">
+                            <mat-option *ngIf="formValidation.value.optionA" [value]="formValidation.value.optionA">
+                                {{ formValidation.value.optionA }}
+                            </mat-option>
+                            <mat-option *ngIf="formValidation.value.optionB" [value]="formValidation.value.optionB">
+                                {{ formValidation.value.optionB }}
+                            </mat-option>
+                            <mat-option *ngIf="formValidation.value.optionC" [value]="formValidation.value.optionC">
+                                {{ formValidation.value.optionC }}
+                            </mat-option>
+                            <mat-option *ngIf="formValidation.value.optionD" [value]="formValidation.value.optionD">
+                                {{ formValidation.value.optionD }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="formValidation.controls['answer'].invalid && formValidation.controls['answer'].touched">
+                            <span *ngIf="formValidation.controls['answer'].hasError('required')">
+                                Category is required
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div class="col-md-12 d-flex justify-content-end gap-1">
+                        <a mat-raised-button routerLink="/admin/quizzes" color="accent">Back</a>
+                        <button mat-raised-button color="primary" [disabled]="formValidation.invalid">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="mt-2">
+    <mat-card-content>
+        <pre>{{ formValidation.value | json }}</pre>
+        <pre>{{ quizToUpdate| json }}</pre>
+    </mat-card-content>
+</mat-card>

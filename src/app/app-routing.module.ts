@@ -15,6 +15,9 @@ import { UpdateCategoryComponent } from './pages/admin/category/update-category/
 import { QuizListComponent } from './pages/admin/quiz/quiz-list/quiz-list.component';
 import { CreateQuizComponent } from './pages/admin/quiz/create-quiz/create-quiz.component';
 import { UpdateQuizComponent } from './pages/admin/quiz/update-quiz/update-quiz.component';
+import { QuestionListComponent } from './pages/admin/questions/question-list/question-list.component';
+import { CreateQuestionComponent } from './pages/admin/questions/create-question/create-question.component';
+import { UpdateQuestionComponent } from './pages/admin/questions/update-question/update-question.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -56,6 +59,18 @@ const routes: Routes = [
             {
                 path: 'quizzes/update/:id',
                 component: UpdateQuizComponent,
+            },
+            {
+                path: 'quizzes/:quizId/questions',
+                component: QuestionListComponent,
+            },
+            {
+                path: 'quizzes/:quizId/questions/create',
+                component: CreateQuestionComponent,
+            },
+            {
+                path: 'quizzes/:quizId/questions/update/:id',
+                component: UpdateQuestionComponent,
             },
         ],
     },

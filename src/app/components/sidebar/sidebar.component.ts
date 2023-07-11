@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -7,9 +8,10 @@ import { StorageService } from 'src/app/services/storage.service';
     styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-    constructor(private readonly storageService: StorageService) {}
+    constructor(private readonly storageService: StorageService, private readonly router: Router) {}
 
     logout() {
         this.storageService.logout();
+        this.router.navigate(['/login']);
     }
 }

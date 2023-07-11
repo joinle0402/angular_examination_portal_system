@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,9 @@ import { UpdateCategoryComponent } from './pages/admin/category/update-category/
 import { QuizListComponent } from './pages/admin/quiz/quiz-list/quiz-list.component';
 import { CreateQuizComponent } from './pages/admin/quiz/create-quiz/create-quiz.component';
 import { UpdateQuizComponent } from './pages/admin/quiz/update-quiz/update-quiz.component';
+import { QuestionListComponent } from './pages/admin/questions/question-list/question-list.component';
+import { CreateQuestionComponent } from './pages/admin/questions/create-question/create-question.component';
+import { UpdateQuestionComponent } from './pages/admin/questions/update-question/update-question.component';
 
 export const snackBarConfig: MatSnackBarConfig = {
     duration: 5000,
@@ -56,6 +60,9 @@ export const snackBarConfig: MatSnackBarConfig = {
         QuizListComponent,
         CreateQuizComponent,
         UpdateQuizComponent,
+        QuestionListComponent,
+        CreateQuestionComponent,
+        UpdateQuestionComponent,
     ],
     imports: [
         BrowserModule,
@@ -64,6 +71,7 @@ export const snackBarConfig: MatSnackBarConfig = {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        CKEditorModule,
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,

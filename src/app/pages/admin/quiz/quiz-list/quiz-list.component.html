@@ -16,9 +16,11 @@
         <p class="body-2">{{ quiz.description }}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary">Questions</button>
-        <button mat-stroked-button color="primary">Max marks: {{ quiz.maxMark }}</button>
-        <button mat-stroked-button color="primary">Number of questions: {{ quiz.numberOfQuestion }}</button>
+        <a mat-raised-button [routerLink]="'/admin/quizzes/' + quiz.id + '/questions'" color="primary">Questions</a>
+        <button mat-stroked-button color="primary" disabled="true">Max marks: {{ quiz.maxMark }}</button>
+        <button mat-stroked-button color="primary" disabled="true">
+            Number of questions: {{ quiz.numberOfQuestion}}
+        </button>
         <button mat-raised-button color="primary">Update</button>
         <button mat-raised-button color="primary">Attempts</button>
         <a mat-raised-button [routerLink]="'/admin/quizzes/update/' + quiz.id" color="accent">Update</a>

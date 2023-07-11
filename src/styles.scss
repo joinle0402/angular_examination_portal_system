@@ -46,7 +46,7 @@ body {
     background-color: red;
 }
 
-@for $i from 1 through 5 {
+@for $i from 0 through 5 {
     .gap-#{$i} {
         gap: 0.5rem * $i;
     }
