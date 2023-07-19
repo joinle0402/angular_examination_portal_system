@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environments';
-import { UserPrincipal } from '../models/auth.model';
+import { Role, UserPrincipal } from '../models/auth.model';
 
 @Injectable({
     providedIn: 'root',
@@ -29,6 +29,15 @@ export class StorageService {
 
     isLoggedIn() {
         return this.getToken() != null;
+    }
+
+    isAdmin(): boolean {
+        if (this.isLoggedIn()) {
+            if (this.getRole() == Role.ADMIN) {
+                return true;
+            }
+        }
+        return false;
     }
 
     logout() {

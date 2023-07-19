@@ -17,12 +17,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class CreateQuestionComponent implements OnInit {
     formValidation: FormGroup;
     ContentEditor = ClassicEditor;
-    OptionAEditor = ClassicEditor;
-    OptionBEditor = ClassicEditor;
-    OptionCEditor = ClassicEditor;
-    OptionDEditor = ClassicEditor;
-    quizId: number = -1;
-    quizToUpdate: Quiz | null = null;
+    quizSlug: string = '';
+    quiz!: Quiz;
 
     constructor(
         private readonly formBuilder: FormBuilder,
@@ -43,14 +39,10 @@ export class CreateQuestionComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.quizId = this.route.snapshot.params['quizId'];
-        this.quizService.findById(this.quizId).subscribe({
-            next: (quizToUpdate: Quiz) => {
-                this.quizToUpdate = quizToUpdate;
-            },
-            error: (error) => {
-                console.log(error);
-                this.router.navigate(['/admin/quizzes']);
+        this.quizSlug = this.route.snapshot.params['quizSlug'];
+        this.quizService.findBySlug(this.quizSlug).subscribe({
+            next: (quiz: Quiz) => {
+                this.quiz = quiz;
             },
         });
     }
@@ -72,14 +64,14 @@ export class CreateQuestionComponent implements OnInit {
                     optionD: this.formValidation.value.optionD,
                     answer: this.formValidation.value.answer,
                     quiz: {
-                        id: this.quizId,
+                        id: this.quiz.id,
                     },
                 };
                 this.questionService.create(createQuestionRequest).subscribe({
                     next: (_) => {
                         console.log('Create quiz response: ', _);
                         this.toastify.open('Create new quiz successfully!', 'CANCEL');
-                        this.router.navigate([`/admin/quizzes/${this.quizId}/questions`]);
+                        this.router.navigate([`/admin/quizzes/${this.quiz.slug}`]);
                     },
                     error: (error) => {
                         console.log(error);

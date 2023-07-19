@@ -34,17 +34,17 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         if (this.loginForm.valid) {
             this.authService.login(this.loginForm.value).subscribe({
-                next: ({ access_token, user }: LoginResponse) => {
-                    console.log('Login response: ', { access_token, user });
-                    this.storageService.setToken(access_token);
-                    this.storageService.setUser(user);
+                next: (response: LoginResponse) => {
+                    console.log('this.authService.login.response: ', response);
+                    this.storageService.setToken(response.access_token);
+                    this.storageService.setUser(response.user);
                     this.toastify.open('Login successfully!', 'CANCEL');
 
                     const role = this.storageService.getRole();
                     if (role != null) {
                         switch (role) {
                             case Role.USER:
-                                this.router.navigate(['/home']);
+                                this.router.navigate(['']);
                                 break;
                             case Role.ADMIN:
                                 this.router.navigate(['/admin/dashboard']);

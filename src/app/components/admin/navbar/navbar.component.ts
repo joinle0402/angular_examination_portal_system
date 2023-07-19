@@ -14,8 +14,12 @@ export class NavbarComponent {
         return this.storageService.isLoggedIn();
     }
 
+    isAdmin(): boolean {
+        return this.storageService.isAdmin();
+    }
+
     logout(): void {
         this.storageService.logout();
-        this.router.navigate(['/login']);
+        this.router.navigateByUrl('/login');
     }
 }

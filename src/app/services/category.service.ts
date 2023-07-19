@@ -8,13 +8,19 @@ import { environment } from '../environments/environments';
     providedIn: 'root',
 })
 export class CategoryService {
+    private API_CATEGORIES_PATH: string = environment.API_URL + '/categories';
+
     constructor(private readonly http: HttpClient) {}
 
     findAll(): Observable<Category[]> {
-        return this.http.get<Category[]>(environment.API_URL + '/categories');
+        return this.http.get<Category[]>(this.API_CATEGORIES_PATH);
+    }
+
+    findBySlug(slug: string): Observable<Category> {
+        return this.http.get<Category>(this.API_CATEGORIES_PATH + `/slug/${slug}`);
     }
 
     create(category: CreateCategoryRequest): Observable<Category> {
-        return this.http.post<Category>(environment.API_URL + '/categories', category);
+        return this.http.post<Category>(this.API_CATEGORIES_PATH, category);
     }
 }

@@ -1,8 +1,7 @@
-import { Category } from 'src/app/models/category.model';
-
 export interface Quiz {
     id: number;
     title: string;
+    slug: string;
     description: string;
     maxMark: number;
     numberOfQuestion: number;
@@ -10,8 +9,18 @@ export interface Quiz {
     category: {
         id: number;
         title: string;
+        slug: string;
         description: string;
     };
+}
+
+export interface QuizPaginationResponse {
+    content: Quiz[];
+    currentPage: number;
+    lastPage: boolean;
+    limit: number;
+    totalElements: number;
+    totalPages: number;
 }
 
 export interface CreateQuizRequest {

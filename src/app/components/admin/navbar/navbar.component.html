@@ -10,6 +10,7 @@
                     </div>
 
                     <div class="navbar-buttons" *ngIf="isLoggedIn()">
+                        <button mat-raised-button *ngIf="isAdmin()">Admin Dashboard</button>
                         <button mat-raised-button (click)="logout()">Logout</button>
                     </div>
                 </div>

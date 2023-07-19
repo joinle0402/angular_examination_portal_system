@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateQuestionRequest, Question, UpdateQuestionRequest } from '../models/question.model';
+import {
+    CreateQuestionRequest,
+    Question,
+    QuestionPaginationResponse,
+    UpdateQuestionRequest,
+} from '../models/question.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environments';
 
@@ -10,8 +15,14 @@ import { environment } from '../environments/environments';
 export class QuestionService {
     constructor(private readonly http: HttpClient) {}
 
-    findAll(quizId: number): Observable<Question[]> {
-        return this.http.get<Question[]>(environment.API_URL + `/quizzes/${quizId}/questions`);
+    findByQuiz(quizId: number, currentPage: number = 1): Observable<QuestionPaginationResponse> {
+        return this.http.get<QuestionPaginationResponse>(environment.API_URL + `/questions/quizzes/${quizId}`, {
+            params: { page: currentPage },
+        });
+    }
+
+    findByQuizSlug(quizSlug: string): Observable<Question[]> {
+        return this.http.get<Question[]>(environment.API_URL + `/questions/slug/${quizSlug}`);
     }
 
     findById(questionId: number): Observable<Question> {

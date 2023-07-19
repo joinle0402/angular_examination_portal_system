@@ -8,6 +8,15 @@ export interface Question {
     answer: string;
 }
 
+export interface QuestionPaginationResponse {
+    content: Question[];
+    currentPage: number;
+    lastPage: boolean;
+    limit: number;
+    totalElements: number;
+    totalPages: number;
+}
+
 export interface CreateQuestionRequest {
     content: string;
     optionA: string;

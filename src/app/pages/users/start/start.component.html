@@ -1,0 +1,52 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <mat-card class="mb-3" *ngFor="let question of questions; index as i">
+
+                    <mat-card-header>
+                        <mat-card-title>
+                            Câu {{ i + 1 }}: {{ question.content }}
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="w-full">
+                        <mat-radio-group class="custom-radio-group">
+                            <mat-radio-button class="custom-radio-button">
+                                {{ question.optionA }}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <mat-radio-group class="custom-radio-group">
+                            <mat-radio-button class="custom-radio-button">
+                                {{ question.optionB }}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <mat-radio-group class="custom-radio-group">
+                            <mat-radio-button class="custom-radio-button">
+                                {{ question.optionC }}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <mat-radio-group class="custom-radio-group">
+                            <mat-radio-button class="custom-radio-button">
+                                {{ question.optionD }}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </mat-card-content>
+
+                </mat-card>
+            </div>
+            <div class="col-md-3">
+                <mat-card>
+                    <mat-card-content>
+                        Pagination
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-9 d-flex justify-content-center">
+            <button mat-raised-button color="primary">Submit</button>
+        </div>
+    </div>
+</div>

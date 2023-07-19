@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title class="mat-headline-6 pl-2">
-            <h2>Adding question to: <b>{{ quizToUpdate && quizToUpdate.title }}</b></h2>
+            <h2>Adding question to: <b>{{ quiz && quiz.title }}</b></h2>
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -9,7 +9,7 @@
             <div class="row">
                 <form class="w-full" [formGroup]="formValidation" (ngSubmit)="onSubmit()">
                     <div class="col-md-12 mb-3">
-                        <ckeditor [editor]="ContentEditor" data=""></ckeditor>
+                        <ckeditor [editor]="ContentEditor" formControlName="content"></ckeditor>
                     </div>
 
                     <mat-form-field class="col-md-6" appearance="outline">
@@ -81,7 +81,7 @@
                     </mat-form-field>
 
                     <div class="col-md-12 d-flex justify-content-end gap-1">
-                        <a mat-raised-button routerLink="/admin/quizzes" color="accent">Back</a>
+                        <a mat-raised-button [routerLink]="'/admin/quizzes/' + quizSlug" color="accent">Back</a>
                         <button mat-raised-button color="primary" [disabled]="formValidation.invalid">Create</button>
                     </div>
                 </form>
@@ -92,7 +92,8 @@
 
 <mat-card class="mt-2">
     <mat-card-content>
+        <pre>{{ quizSlug | json }}</pre>
         <pre>{{ formValidation.value | json }}</pre>
-        <pre>{{ quizToUpdate| json }}</pre>
+        <pre>{{ quiz | json }}</pre>
     </mat-card-content>
 </mat-card>

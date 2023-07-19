@@ -14,14 +14,8 @@ export class CategoryListComponent implements OnInit {
     constructor(private readonly categoryService: CategoryService) {}
 
     ngOnInit(): void {
-        this.categoryService.findAll().subscribe({
-            next: (categories: Category[]) => {
-                this.categories = categories;
-            },
-            error: (error) => {
-                console.log(error);
-                Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!' });
-            },
+        this.categoryService.findAll().subscribe((categories: Category[]) => {
+            this.categories = categories;
         });
     }
 }

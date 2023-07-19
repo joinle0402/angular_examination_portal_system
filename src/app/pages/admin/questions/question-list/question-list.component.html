@@ -1,21 +1,21 @@
-<div class="py-2">
+<div class="py-2" *ngIf="pagination">
     <mat-card class="py-1">
         <mat-card-header class="d-flex justify-content-between ">
             <mat-card-title class="text-uppercase">Question List: {{ quiz && quiz.title }}</mat-card-title>
-            <a mat-raised-button [routerLink]="'/admin/quizzes/' + quizId + '/questions/create'" color="primary">
+            <a mat-raised-button [routerLink]="'/admin/quizzes/' + quizSlug + '/create'" color="primary">
                 Create new Question
             </a>
         </mat-card-header>
     </mat-card>
 
-    <mat-card class="mt-2" *ngFor="let question of questions; index as i">
+    <mat-card class="mt-2" *ngFor="let question of pagination.content; index as i">
         <mat-card-header>
+            <mat-card-subtitle>Câu {{ ((pagination.currentPage - 1) * pagination.limit) + i + 1 }}: </mat-card-subtitle>
             <mat-card-title>
-                <b>Câu {{ i + 1 }}: </b>
-                <span>{{ question.content }}</span>
+                <span [innerHTML]="question.content"></span>
             </mat-card-title>
         </mat-card-header>
-        <mat-card-content class="mt-2 w-full">
+        <mat-card-content class="w-full">
             <mat-list role="list">
                 <mat-list-item role="listitem">
                     <b>A. </b>
@@ -40,5 +40,20 @@
                 </mat-list-item>
             </mat-list>
         </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="deleteQuestion(question.id)">Delete</button>
+            <a mat-raised-button [routerLink]="'/admin/quizzes/' + quiz.slug + '/update/' +  question.id"
+                color="accent">Update</a>
+        </mat-card-actions>
     </mat-card>
+</div>
+
+<div class="container-fluid d-flex justify-content-center mb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <app-pagination *ngIf="pagination" [currentPage]="pagination.currentPage"
+                [totalPage]="pagination.totalPages" (changePage)="onChangePage($event)">
+            </app-pagination>
+        </div>
+    </div>
 </div>

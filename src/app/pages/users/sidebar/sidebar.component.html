@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-action-list>
+        <div mat-subheader>Category List</div>
+        <button mat-list-item *ngFor="let sidebarItem of sidebarItems" [routerLink]="sidebarItem.route"
+            routerLinkActive="active-link" [ngClass]="{ 'active-link': true }">
+            <div class="sidebar-item">
+                <mat-icon mat-list-icon>quiz</mat-icon>
+                <span>{{ sidebarItem.name }}</span>
+            </div>
+        </button>
+    </mat-action-list>
+</mat-card>
